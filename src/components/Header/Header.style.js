@@ -4,7 +4,7 @@ import { colors } from "../../constants/colors";
 export default styles = StyleSheet.create({
   container: {
     backgroundColor: colors.dark,
-    height: 150,
+    height: 120,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -13,6 +13,6 @@ export default styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "PoppinsThinItalic",
     color: colors.light,
-    padding: 50,
+    paddingTop: 50,
   },
 });
