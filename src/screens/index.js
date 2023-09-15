@@ -1,5 +1,4 @@
-import Details from './Details/Details'
-import Home from './Home/Home'
-import Products from './Products/Products'
+import Home from "./Home/Home.jsx";
+import CategoryDetail from "./CategoryDetail/CategoryDetail";
 
-export { Home, Products, Details }
+export { Home, CategoryDetail };

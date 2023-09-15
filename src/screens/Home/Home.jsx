@@ -1,27 +1,62 @@
-import { FlatList, View } from 'react-native'
+import { FlatList, View } from "react-native";
+import React, { useState } from "react";
+import gifsData from "../../data/gifsData";
+import styles from "./Home.style";
+import { CategoryDetail } from "../index";
+import CategoryItem from "./components/CategoryItem/CategoryItem";
+import { Sidebar } from "../../components";
 
-import { CategoryItem } from './components'
-import { Header } from '../../components'
-import React from 'react'
-import dataCategories from '../../data/dataCategories'
-import styles from './Home.style'
+const Home = () => {
+  const [categoriesSelected, setCategoriesSelected] = useState([]);
 
-const Home = ({ setCategorySelected }) => {
+  const handleCategorySelected = (category) => {
+    if (categoriesSelected.includes(category)) {
+      setCategoriesSelected(
+        categoriesSelected.filter((item) => item !== category)
+      );
+    } else {
+      setCategoriesSelected([...categoriesSelected, category]);
+    }
+  };
+
+  const uniqueCategories = [];
+
+  for (const item of gifsData) {
+    if (!uniqueCategories.includes(item.category)) {
+      uniqueCategories.push(item.category);
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Header title={'Categories'} />
-      <FlatList
-        data={dataCategories}
-        keyExtractor={category => category}
-        renderItem={({ item }) => (
-          <CategoryItem
-            category={item}
-            setCategorySelected={setCategorySelected}
+      {categoriesSelected.length > 0 ? (
+        <>
+          <Sidebar title={`${categoriesSelected}`} />
+          <View style={styles.cardCategory}>
+            {categoriesSelected.map((category) => (
+              <CategoryDetail key={category} category={category} />
+            ))}
+          </View>
+        </>
+      ) : (
+        <>
+          <Sidebar title={"Home"} />
+          <FlatList
+            data={uniqueCategories}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) => {
+              return (
+                <CategoryItem
+                  category={item}
+                  setCategorySelected={handleCategorySelected}
+                />
+              );
+            }}
           />
-        )}
-      />
+        </>
+      )}
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -14,8 +14,23 @@ export default styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  container: {
+    marginBottom: 16,
+    padding: 16,
+  },
+
   text: {
-    fontWeight:"500",
+    fontWeight: "500",
     letterSpacing: 1,
+    paddingBottom: 8,
+  },
+  containerImg: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  imageCategory: {
+    width: "96%",
+    height: 100,
+    borderRadius: 16,
   },
 });
