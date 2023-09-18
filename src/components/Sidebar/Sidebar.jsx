@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import styles from "./Sidebar.style";
 
-const Sidebar = ({ title }) => {
+const Sidebar = ({ title, setScreenHome, setCategoriesSelected }) => {
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const toggleSidebar = () => {
@@ -14,17 +14,38 @@ const Sidebar = ({ title }) => {
     setSidebarActive(false);
   };
 
+  const returnScreen = () => {
+    setScreenHome(true);
+    setCategoriesSelected([]);
+  };
+
   return (
     <View style={styles.nav}>
       <View style={styles.navBar}>
-        <TouchableOpacity style={styles.sidebarIcon} onPress={toggleSidebar}>
-          <FontAwesome name="align-left" size={25} color="#FFF" />
-        </TouchableOpacity>
-        <Text style={styles.logo}>{title}</Text>
-
-        <TouchableOpacity style={styles.notificationIcon}>
-          <Ionicons name="notifications" size={25} color="#FFF" />
-        </TouchableOpacity>
+        {title === "Home" ? (
+          <>
+            <TouchableOpacity
+              style={styles.sidebarIcon}
+              onPress={toggleSidebar}
+            >
+              <FontAwesome name="align-left" size={25} color="#FFF" />
+            </TouchableOpacity>
+            <Text style={styles.logo}>{title}</Text>
+            <TouchableOpacity style={styles.notificationIcon}>
+              <Ionicons name="notifications" size={25} color="#FFF" />
+            </TouchableOpacity>
+          </>
+        ) : (
+          <>
+            <TouchableOpacity
+              style={styles.notificationIcon}
+              onPress={returnScreen}
+            >
+              <Ionicons name="return-down-back" size={25} color="#FFF" />
+            </TouchableOpacity>
+            <Text style={styles.logo}>{title}</Text>
+          </>
+        )}
       </View>
       {sidebarActive && (
         <View style={styles.sidebar}>

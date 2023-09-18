@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colorGreen, colors } from "../../constants/colors";
 import { spacing } from "../../constants/spacing";
+import { fontsType } from "../../constants/fontsType";
 
 export default styles = StyleSheet.create({
   nav: {
@@ -57,10 +58,9 @@ export default styles = StyleSheet.create({
     padding: spacing.s,
   },
   sidebarLogo: {
-    fontSize: 20,
-    fontWeight: "500",
+    fontSize: 24,
     color: colors.logo,
-    fontFamily: "PoppinsThinItalic",
+    fontFamily: fontsType.bold,
   },
   sidebarNavLinks: {
     paddingHorizontal: spacing.xs,

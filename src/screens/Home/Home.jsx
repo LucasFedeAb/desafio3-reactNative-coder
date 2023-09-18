@@ -8,6 +8,7 @@ import { Sidebar } from "../../components";
 
 const Home = () => {
   const [categoriesSelected, setCategoriesSelected] = useState([]);
+  const [screenHome, setScreenHome] = useState(true);
 
   const handleCategorySelected = (category) => {
     if (categoriesSelected.includes(category)) {
@@ -31,7 +32,11 @@ const Home = () => {
     <View style={styles.container}>
       {categoriesSelected.length > 0 ? (
         <>
-          <Sidebar title={`${categoriesSelected}`} />
+          <Sidebar
+            title={`${categoriesSelected}`}
+            setScreenHome={setScreenHome}
+            setCategoriesSelected={setCategoriesSelected}
+          />
           <View style={styles.cardCategory}>
             {categoriesSelected.map((category) => (
               <CategoryDetail key={category} category={category} />
@@ -40,7 +45,7 @@ const Home = () => {
         </>
       ) : (
         <>
-          <Sidebar title={"Home"} />
+          <Sidebar title={"Home"} setScreenHome={setScreenHome} />
           <FlatList
             data={uniqueCategories}
             keyExtractor={(item) => item}
